@@ -2,6 +2,7 @@
   <div class="content">
     <div class="content-1">
       二维码
+      {{ index }}
     </div>
     <div class="content-2">
       <p v-text="musics[index].title"></p>
@@ -15,13 +16,19 @@
           pic: musics[index].picture
         }"
       />
-      <div>
+      <div class="content-2-button">
         <button @click="Aup" v-show="index">上一首</button>
         <button @click="Aout">下一首</button>
       </div>
     </div>
     <div class="content-3">
-      <img class="content-3-img" :src="musics[index].picture" />
+      <img class="content-3-img current" :src="musics[index].picture" />
+      <img
+        class="content-3-img advance"
+        v-if="index <= 3"
+        :src="musics[index + 1].picture"
+      />
+      <img class="content-3-img advance" v-else :src="preMusic[0].picture" />
     </div>
   </div>
 </template>
@@ -34,7 +41,7 @@ export default {
       index: 0
     };
   },
-  props: ["musics", "out"],
+  props: ["musics", "out", "preMusic"],
   components: {
     Aplayer
   },
@@ -44,10 +51,9 @@ export default {
     },
     Aout() {
       switch (this.index) {
-        case 5:
-          this.out(this.index);
+        case 4:
+          this.out();
           break;
-
         default:
           this.index++;
           break;
@@ -64,9 +70,24 @@ export default {
   align-items: center;
 }
 
-.content-3-img {
+.content-2 {
+  width: 50%;
+}
+
+.content-2-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.current {
   width: 15rem;
   height: 15rem;
+  border-radius: 50%;
+}
+
+.advance {
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
 }
 </style>

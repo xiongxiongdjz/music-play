@@ -1,14 +1,14 @@
 <template>
   <div class="header">
-    <div class="header-1">
+    <div class="header-1 content">
       <p>豆瓣FM</p>
     </div>
-    <div class="header-2">
+    <div class="header-2 content">
       <p>下载豆瓣FM APP</p>
       .
       <p>我要反馈</p>
     </div>
-    <div class="header-3">
+    <div class="header-3 content">
       <p>登录</p>
       |
       <p>注册</p>
@@ -18,18 +18,12 @@
 
 <style lang="scss">
 .header {
-  background: pink;
-  display: flex;
-  align-items: center;
-}
-
-.header-2,
-.header-3 {
+  width: 100%;
   display: flex;
 }
 
-.header-3 {
-  background: yellow;
-  right: 100px;
+.content {
+  display: flex;
+  justify-content: flex-start;
 }
 </style>
